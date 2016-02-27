@@ -1,0 +1,103 @@
+Experiment
+2015-05-16-A
+
+sample02/run03b/sfr_vs_m_linfit_py
+
+
+OBJECTIVE
+
+SFR vs M* analysis of galaxies in sample02, using data from run03b (linear-exponential, "delayed tau model" SFH).  Linear model parameters and intrinsic scatter.
+
+METHOD
+
+Code executed on 8/5/2015
+Code re-executed on 10/3/2015 (sfr100 revisions)
+Code re-executed on 10/17/2015 (added selection functions; See Experiment 2015-10-14-A)
+Code re-executed on 2/3/2016 (removed duplicate sources)
+
+1.  Data:  see ../database.  MCMCfit results for run03b
+
+	see file:
+	candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits
+	candels_2015a_sample02_run03b_speedymc_results_norejects_v2.fits
+	
+	
+2.  Python scripts: copied from 2015-05-16-A/sample01/run03b/
+
+	see files:
+	sfr_100_vs_m_line_clip_sim_linexp.py
+	sfr_inst_vs_m_line_clip_sim_linexp.py
+	sfr_life_vs_m_line_clip_sim_linexp.py
+				  
+	2.1 Execute python script.
+	2.2 Inspect residuals (topcat) vis a vis clipping range. include bulk of residuals.
+	2.3 Upload refit data .txt files to khuseti, for run in IDL to fit with K07
+	2.4 Copy K07 fit results into python script.  Re-run python scripts.
+	
+	see folders (khuseti):
+	khuseti:~/analysis/CANDELS/2015-05-16-A/sample02/analysis/run03b 
+
+3.  Explore effect of reducing chisq threshold for good data
+
+	See Python script: sfr_inst_vs_m_line_clip_sim_linexp_chisq100.py
+	
+		
+Execution command (bash shell):
+
+./sfr_inst_vs_m_line_clip_sim_linexp_chisq100.py -v -i 1000 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse_chisq100.pdf > candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse_chisq100.log.txt
+
+./sfr_100_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample02_run03b_sfr_100_vs_m_line_new_clip_sim_z17_median_ellipse.pdf > candels_2015a_sample02_run03b_sfr_100_vs_m_line_new_clip_sim_z17_median_ellipse.log.txt
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse.pdf > candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse.log.txt
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 100 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse.pdf
+
+./sfr_life_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample02_run03b_sfr_life_vs_m_line_new_clip_sim_z17_median_ellipse.pdf > candels_2015a_sample02_run03b_sfr_life_vs_m_line_new_clip_sim_z17_median_ellipse.log.txt
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.76 candels_2015a_sample02_run03b_speedymc_results_no_rejects_v2.fits candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse_v2.pdf > candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse_v2.log.txt
+
+	Execution time:  about 2 minutes
+
+These three commands are combined in the shell script:  ./run_script.sh
+
+
+RESULTS
+
+Fit results for sfr_inst..._v2.log.txt
+Executive summary
+	Number of data in fit          :  447
+	Slope                     F87  : 0.867$\pm$0.013
+	Intercept                 F87  : -7.484$\pm$0.011
+	XRef                           : 9.000
+	Y(XRef)                   F87  : 0.321$\pm$0.017
+	Intrinsic scatter (sigma) F87  : 0.255$\pm$0.008
+	Total scatter (dex)       F87  : 0.354
+	Outlier fraction (positive)    : 0.015
+	Outlier fraction (negative)    : 0.026
+	Median (reduced) chisq         : 1.414
+
+
+
+FIGURE:  candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse_v2.pdf
+
+CAPTION
+Star Formation Rate (SFR$_{Inst}$; instantaneous) vs. Stellar Mass (M$_*$) in the redshift range $1.5 < z < 2.0$ for galaxies in combined CANDELS (spec-z) and UVUDF (photo-z) sample.  Outliers (red points) from an initial fit are clipped; Remaining galaxies (gray points) are used to determine the best fit (dark purple).  Results from Whitaker et al.~(2014; cyan) and the meta-analysis of Speagle et al.~(2014; red) are shown; dashed regions indicate extrapolations from the reported ranges in M$_*$.  Selection curves are shown in black; our data are insensitive to galaxies that would fall along the correlation, to the lower left of this curve.  The squared Pearson correlation coefficient and estimated intrinsic scatter (dex) are indicated by the text label.  A typical error ellipse is shown in the upper left, with half-width and half-height equal to the median error in log M$_*$ and log SFR respectively, and orientation determined by the median covariance.
+
+3. Chisq experiment
+
+Intrinsic scatter changes from 0.26 (chisq < 50) --> 0.29 (chisq < 100) when using sample which less stringent chisq criterion.  Other parameters (slope, intercept) are basically unchanged.
+
+Executive summary					chisq < 50			chisq < 100
+	Number of data in fit          :  459				  537	
+	Slope                     F87  : 0.865$\pm$0.013	 0.857$\pm$0.012
+	Intercept                 F87  : -7.495$\pm$0.011	 -7.520$\pm$0.010
+	XRef                           : 9.000				 9.000
+	Y(XRef)                   F87  : 0.294$\pm$0.017	 0.190$\pm$0.016
+	Intrinsic scatter (sigma) F87  : 0.257$\pm$0.008	 0.288$\pm$0.009
+	Total scatter (dex)       F87  : 0.354				 0.378
+	Outlier fraction (positive)    : 0.017				 0.014
+	Outlier fraction (negative)    : 0.025				 0.025
+	Median (reduced) chisq         : 1.421				 1.580
+
+
+

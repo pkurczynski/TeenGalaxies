@@ -1,0 +1,281 @@
+sfr_inst_vs_m_line_clip_sim_linexp.py 
+
+Run date and time :   2015-11-11 16:43:46.013514
+Python Version    :   3.4.2 |Anaconda 2.0.1 (x86_64)| (default, Oct 21 2014, 17:42:20) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Astropy version   :   0.3.2
+
+
+Description of input data
+	Input file                     :  candels_2015a_sample02_run03b_speedymc_results_norejects_v1.fits
+	Output file                    :  candels_2015a_sample02_run03b_sfr_inst_vs_m_line_new_clip_sim_z17_median_ellipse.pdf
+	Number of input data           :  706
+	Number of good data            :  479
+
+Good data (used in subsequent analysis)
+	Number of data                 :  479
+	X data
+	   min                         :  6.712
+	   median                      :  8.65975
+	   max                         :  11.2139
+	Y data
+	   min                         :  -2.49994
+	   median                      :  0.2699
+	   max                         :  2.09233
+
+Scaling (for decorrelating slope & intercept errors)
+	x_scale:  8.660
+	y_scale:  0.270
+
+Initial fit to good data
+	Best fit slope                 : 0.83
+	Best fit intercept             : -7.17
+	Intrinsic scatter variance F87 : 0.148
+	Residuals (ie residual = (y-y_fit))
+	     Mean                      : 0.00
+	     Std deviation             : 0.45
+	Residuals (unitless; ie residual = (y-y_fit)/y_err)
+	     Mean                      : 1.02
+	     Std deviation             : 3.66
+
+Initial fit to good data
+Components of scatter
+	Total scatter, < (y-yfit)^2 >          : 0.20038
+	Scatter due to y-err, <y_err^2>        : 0.04665
+	Best fit slope, m, in linear model     : 0.82609
+	Scatter due to x-err, <x_err^2>        : 0.01022
+	Intrinsic  scatter, sig_IS^2           : 0.14676
+	Intrinsic scatter, % of total          : 73.24%
+
+Clipping of outliers
+Data outside the clipping region are classified as outliers
+	Clipping threshold (sigma)     :  0.895283222198
+	Number of non-outliers         :  459
+	Total number of outliers       :  20
+	Number of positive outliers    :  8
+	Number of negative outliers    :  12
+	Outlier fraction (positive)    : 0.02
+	Outlier fraction (negative)    : 0.03
+Initial fit data, model, residuals saved to file:  sfr_inst_vs_m_initial_fit_residuals.txt
+
+Refit to good data
+	Best fit slope                 : 0.87
+	Best fit intercept             : -7.49
+	Intrinsic scatter variance F87 : 0.066
+	Residuals (ie residual = (y-y_fit))
+	     Mean                      : 0.00
+	     Std deviation             : 0.35
+	Residuals (unitless; ie residual = (y-y_fit)/y_err)
+	     Mean                      : 0.72
+	     Std deviation             : 3.09
+
+Refit to good data
+Components of scatter
+	Total scatter, < (y-yfit)^2 >          : 0.12515
+	Scatter due to y-err, <y_err^2>        : 0.03526
+	Best fit slope, m, in linear model     : 0.86543
+	Scatter due to x-err, <x_err^2>        : 0.01019
+	Intrinsic  scatter, sig_IS^2           : 0.08226
+	Intrinsic scatter, % of total          : 65.73%
+Refit data saved to file:  sfr_inst_vs_m_refit.txt
+Refit data and covariances saved to file:  sfr_inst_vs_m_refit_cov.txt
+Refit id, data, covariances, correlations saved to file:  sfr_inst_vs_m_refit_id_cov_corr.txt
+Good data saved to file:  sfr_inst_vs_m_refit_db_table.txt
+
+Results of re-fit to model data
+	Number of data in fit          :  459
+	x_scale                        : 8.660
+	y_scale                        : 0.270
+	Spearman correlation (rho,p)   : 0.90 , 0.000000
+	Pearson correlation (r,p)      : 0.90 , 0.000000
+	Quality of fit
+	r^2 (OLS)                      : 0.807
+
+Simulation Inputs and Execution Time (Errors)
+	Number of Realizations         : 1000
+	xerr_type                      : normal
+	yerr_type                      : normal
+Parameter Estimates, Bias and Errors from Simulation
+	Slope Estimates
+	                         BCES  : 0.85
+	                          F87  : 0.85
+	                          k07  : 9999.00
+	                          mle  : 0.84
+	                          odr  : 0.92
+	                          ols  : 0.84
+	                          t02  : 0.92
+	                          wls  : 0.82
+	Slope Bias From Simulations
+	                         BCES  : -0.00027
+	                          F87  : -0.00027
+	                          k07  : nan
+	                          mle  : -0.00817
+	                          odr  : 0.00293
+	                          ols  : -0.01185
+	                          t02  : 0.00293
+	                          wls  : -0.00881
+	Slope Error From Simulations
+	                         BCES  : 0.01317
+	                          F87  : 0.01317
+	                          k07  : 9999.00000
+	                          mle  : 0.01059
+	                          odr  : 0.01102
+	                          ols  : 0.01293
+	                          t02  : 0.01101
+	                          wls  : 0.01141
+	Intercept Estimates
+	                         BCES  : -7.38
+	                          F87  : -7.38
+	                          k07  : -76589.84
+	                          mle  : -7.27
+	                          odr  : -7.83
+	                          ols  : -7.27
+	                          t02  : -7.83
+	                          wls  : -6.89
+	Intercept Bias From Simulations
+	                         BCES  : -0.00003
+	                          F87  : -0.00003
+	                          k07  : nan
+	                          mle  : 0.00246
+	                          odr  : -0.00127
+	                          ols  : 0.00128
+	                          t02  : -0.00127
+	                          wls  : 0.00210
+	Intercept Error From Simulations
+	                         BCES  : 0.01058
+	                          F87  : 0.01058
+	                          k07  : 9999.00000
+	                          mle  : 0.00889
+	                          odr  : 0.00916
+	                          ols  : 0.01055
+	                          t02  : 0.00916
+	                          wls  : 0.00967
+	Scatter Variance Estimates
+	                         BCES  : 0.08213
+	                          F87  : 0.08268
+	                          k07  : 9999.00000
+	                          mle  : 0.08652
+	                          odr  : 0.08223
+	                          ols  : 0.08223
+	                          t02  : 0.09742
+	                          wls  : 0.08281
+	Scatter Variance Bias From Simulations
+	                         BCES  : 0.00005
+	                          F87  : 0.00020
+	                          k07  : nan
+	                          mle  : -0.00013
+	                          odr  : 0.00014
+	                          ols  : 0.00014
+	                          t02  : 0.00015
+	                          wls  : 0.00017
+	Scatter Variance Estimate (Bias Adjusted)
+	                         BCES  : 0.08208
+	                          F87  : 0.08248
+	                          k07  : nan
+	                          mle  : 0.08665
+	                          odr  : 0.08209
+	                          ols  : 0.08209
+	                          t02  : 0.09727
+	                          wls  : 0.08264
+	Scatter Variance Error From Simulations
+	                         BCES  : 0.00394
+	                          F87  : 0.00409
+	                          k07  : 9999.00000
+	                          mle  : 0.00192
+	                          odr  : 0.00395
+	                          ols  : 0.00395
+	                          t02  : 0.00210
+	                          wls  : 0.00396
+	Scatter Variance SNR From Simulations
+	                         BCES  : 20.85725
+	                          F87  : 20.22212
+	                          k07  : 1.00000
+	                          mle  : 45.15373
+	                          odr  : 20.84131
+	                          ols  : 20.84131
+	                          t02  : 46.42404
+	                          wls  : 20.90356
+Parameter Estimates - Fits with covariances
+	Slope Estimates
+	                          F87  : 0.87
+	                          K07  : 9999.00
+	Intercept Estimates
+	                          F87  : -7.49
+	                          k07  : -76589.84
+	Scatter Variance Estimates
+	                          F87  : 0.06592
+	                          OLS  : 0.06537
+	                          k07  : 9999.00000
+Intercept Estimates at log mass reference value
+	X reference value              : 9.00000
+	Y(ref value)              F87  : 0.29425
+	Y(ref value) error        F87  : 0.01690
+Components of scatter
+	Total scatter, < (y-yfit)^2 >          : 0.12479
+	Scatter due to y-err, <y_err^2>        : 0.03526
+	Best fit slope, m, in linear model     : 0.85204
+	Scatter due to x-err, <x_err^2>        : 0.01019
+	Covariance term, 2m<Cov(x,y)>          : -0.01663
+	Intrinsic  scatter, sig_IS^2           : 0.06550
+	Intrinsic scatter, % of total          : 52.49%
+
+Summary of Refit Residuals
+Units of data, ie residual = y-y_fit
+	Min                            : -0.89
+	Mean                           : 0.00
+	Max                            : 0.86
+	Std deviation                  : 0.35
+	Sum of squares (ESS)           : 57.28
+Unitless ('sigma'), ie residual = (y-y_fit)/y_err
+	Min                            : -6.01
+	Mean                           : 0.73
+	Max                            : 18.40
+	Std deviation                  : 3.09
+	Sum of squares (chisq)         : 4640.21
+
+Summary of x binned residuals
+Number of bins:  3
+
+Bin 1
+	Number of data in bin          :  95
+	x Range                        :  [ 1.  8.]
+	x Bin     - Mean               : 7.66
+	x Bin     - Median             : 7.69
+	x Bin     - Std Dev            : 0.26
+	Residual - Mean           : 0.06
+	Residual - Median         : 0.00
+	Residual - Std Dev        : 0.31
+
+Bin 2
+	Number of data in bin          :  179
+	x Range                        :  [ 8.  9.]
+	x Bin     - Mean               : 8.45
+	x Bin     - Median             : 8.43
+	x Bin     - Std Dev            : 0.29
+	Residual - Mean           : -0.08
+	Residual - Median         : -0.10
+	Residual - Std Dev        : 0.37
+
+Bin 3
+	Number of data in bin          :  185
+	x Range                        :  [  9.  20.]
+	x Bin     - Mean               : 9.66
+	x Bin     - Median             : 9.56
+	x Bin     - Std Dev            : 0.44
+	Residual - Mean           : 0.05
+	Residual - Median         : 0.08
+	Residual - Std Dev        : 0.34
+
+Executive summary
+	Number of data in fit          :  459
+	Slope                     F87  : 0.865$\pm$0.013
+	Intercept                 F87  : -7.495$\pm$0.011
+	XRef                           : 9.000
+	Y(XRef)                   F87  : 0.294$\pm$0.017
+	Intrinsic scatter (sigma) F87  : 0.257$\pm$0.008
+	Total scatter (dex)       F87  : 0.354
+	Outlier fraction (positive)    : 0.017
+	Outlier fraction (negative)    : 0.025
+	Median (reduced) chisq         : 1.421
+
+sfr_inst_vs_m_line_clip_sim_linexp.py Done!
