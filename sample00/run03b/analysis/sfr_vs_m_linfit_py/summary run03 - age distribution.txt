@@ -1,0 +1,164 @@
+Experiment 2015-05-16-A
+
+sample01/run03/analysis/sfr_vs_m_linfit_py
+
+summary run03 - age distribution.txt
+
+Here are some interesting plots for discussion -- we find a segregation of galaxies in the SFR-M* plane according to their ages, with young galaxies having higher SFR for a given mass than older galaxies.  In the plot of SFR(lifetime) vs M*, this becomes most evident.
+
+It seems to me that one way of understanding the low scatter in SFR-M* is that it reflects the relatively narrow distribution of ages.  See attached plots.
+
+
+Here is a comparison of age estimates from SpeedyMC fits with different star formation histories.  We see a strong correlation, especially between LinExp and Exp computed ages.  However, there is an offset -- Exp SFH leads to systematically younger ages by ~ 0.2 dex.  CSF computed ages have larger scatter compared to the other models.
+
+Binning in M* and SFR was intended to check for any systematic bias in age estimates, e.g. are less massive or lower SFR galaxies systematically more discrepant in their age estimates than more massive and higher SFR galaxies?  By comparing the scatter and relative positioning of the red, green, blue points in these plots in linexp vs exp, there does not seem to be such a bias.  In the same comparison in CSF vs Exp, there does seem to be a bias in the sense that more massive galaxies have systematically higher CSF ages than Exp Ages (ie. green and red points tend to fall farther above the black line than the blue points).
+
+These plots may be used to assess systematic uncertainty in our Age estimates.
+
+
+
+
+FIGURE:
+candels_2015a_sample01_run03_age_distribution_tc.pdf
+
+CAPTION:
+Distribution of ages of galaxies in the H-band UVUDF photo-z + CANDELS specz sample.  Sample is divided according to outliers from the SFR-M* correlation (red) and non-outliers (blue).  The entire sample has mean logAge = 8.3 and standard deviation 0.28.
+
+FIGURES:
+candels_2015a_sample01_run03_sfr_100_vs_m_age_segregation_tc.pdf
+candels_2015a_sample01_run03_sfr_inst_vs_m_age_segregation_tc.pdf
+candels_2015a_sample01_run03_sfr_life_vs_m_age_segregation_tc.pdf
+
+CAPTION:
+SFR vs M* for galaxies in the H-band UVUDF photo-z + CANDELS specz sample.
+Sample is divided into bins of expected value of logAge:  Young (blue, logAge < 8.0), medium (gren, 8.0 < logAge < 8.6) and old (red, logAge > 8.6) galaxies segregate along the upper, middle and lower regions of the band of galaxies that form the SFR-M* correlation.  Negative outliers from the correlation are old galaxies, and positive outliers are young galaxies.
+
+
+FIGURES:
+candels_2015a_sample01_linexp_age_vs_exp_age_sfr_bins_tc.pdf
+candels_2015a_sample01_linexp_age_vs_exp_age_m_bins_tc.pdf
+candels_2015a_sample01_csf_age_vs_exp_age_tc.pdf
+
+CAPTION:
+Expected values of logAge from SpeedyMC fits with various star formation histories.  Age estimates are plotted against each other for inter-comparison.  Galaxies are binned in M* or SFR as indicated by the legend.  A linear fit to the entire sample is shown in gray, with fit parameters in the legend.  In each plot, a 1-1 line is shown in black for comparison.
+
+=====================================================================================
+
+SFR(100)
+
+Select Age, EBV, Tau and other parameters for the set of galaxies that are 
+included in SFR vs M* analysis (outliers and non-outliers from initial fit)
+
+
+SELECT b.*,
+	   a."LogAge_Yr_Expected_Value",
+	   a."LogAge_Yr_Expected_Err68",
+	   a."EBV_Expected_Value",
+	   a."EBV_Expected_Err68",
+	   a."LogTau_Yr_Expected_Value",
+	   a."LogTau_Yr_Expected_Err68",
+	   a."LogT50_Yr_Expected_Value",
+	   a."LogT50_Yr_Expected_Err68",
+	   a."LogSFR_Max_Expected_Value",
+	   a."LogSFR_Max_Expected_Err68",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Value",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Err68"
+FROM candels_2015a.sample01_run03_speedymc_results as a
+INNER JOIN candels_2015a.sample01_run03_sfr_100_vs_m_refit as b
+ON a."ID" = b."id"
+
+=====================================================================================
+
+SFR(Inst)
+
+Select Age, EBV, Tau and other parameters for the set of galaxies that are 
+included in SFR vs M* analysis (outliers and non-outliers from initial fit)
+
+
+SELECT b.*,
+	   a."LogAge_Yr_Expected_Value",
+	   a."LogAge_Yr_Expected_Err68",
+	   a."EBV_Expected_Value",
+	   a."EBV_Expected_Err68",
+	   a."LogTau_Yr_Expected_Value",
+	   a."LogTau_Yr_Expected_Err68",
+	   a."LogT50_Yr_Expected_Value",
+	   a."LogT50_Yr_Expected_Err68",
+	   a."LogSFR_Max_Expected_Value",
+	   a."LogSFR_Max_Expected_Err68",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Value",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Err68"
+FROM candels_2015a.sample01_run03_speedymc_results as a
+INNER JOIN candels_2015a.sample01_run03_sfr_inst_vs_m_refit as b
+ON a."ID" = b."id"
+
+=====================================================================================
+
+SFR(Life)
+
+Select Age, EBV, Tau and other parameters for the set of galaxies that are 
+included in SFR vs M* analysis (outliers and non-outliers from initial fit)
+
+
+SELECT b.*,
+	   a."LogAge_Yr_Expected_Value",
+	   a."LogAge_Yr_Expected_Err68",
+	   a."EBV_Expected_Value",
+	   a."EBV_Expected_Err68",
+	   a."LogTau_Yr_Expected_Value",
+	   a."LogTau_Yr_Expected_Err68",
+	   a."LogT50_Yr_Expected_Value",
+	   a."LogT50_Yr_Expected_Err68",
+	   a."LogSFR_Max_Expected_Value",
+	   a."LogSFR_Max_Expected_Err68",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Value",
+	   a."LogGalaxyMass_Inf_Msun_Expected_Err68"
+FROM candels_2015a.sample01_run03_speedymc_results as a
+INNER JOIN candels_2015a.sample01_run03_sfr_life_vs_m_refit as b
+ON a."ID" = b."id"
+
+
+
+=====================================================================================
+
+Age estimates from different SFHs
+
+Select expected values of age computed with three different SFHs for the 
+set of galaxies used in SFR in SFR vs M* analysis (outliers and non-outliers from initial fit)
+
+
+SELECT a.*,
+	   b."LogAge_Yr_Expected_Value" as "LinExp_LogAge_Yr_Expected_Value",
+	   b."LogAge_Yr_Expected_Err68"as "LinExp_LogAge_Yr_Expected_Err68",
+	   c."LogAge_Yr_Expected_Value"as "Exp_LogAge_Yr_Expected_Value",
+	   c."LogAge_Yr_Expected_Err68"as "Exp_LogAge_Yr_Expected_Err68",
+	   d."LogAge_Yr_Expected_Value"as "CSF_Exp_LogAge_Yr_Expected_Value",
+	   d."LogAge_Yr_Expected_Err68" as "CSF_Exp_LogAge_Yr_Expected_Err68"
+FROM candels_2015a.sample01_run03_sfr_life_vs_m_refit as a
+INNER JOIN candels_2015a.sample01_run03_speedymc_results as b
+ON a."id" = b."ID"
+LEFT OUTER JOIN candels_2015a.sample01_run04_speedymc_results as c
+ON a."id" = c."ID"
+LEFT OUTER JOIN candels_2015a.sample01_run02_speedymc_results as d
+ON a."id" = d."ID"
+
+=====================================================================================
+
+Age estimates from different SFHs
+
+Select expected values of age computed with three different SFHs for the 
+set of galaxies used in SFR in SFR vs M* analysis (outliers and non-outliers from initial fit).  Select just the age estimates for export into TopCat, and computing standard deviation of age estimate for each galaxy.
+
+
+
+SELECT a.id,
+	   b."LogAge_Yr_Expected_Value" as "LinExp_LogAge_Yr_Expected_Value",
+	   c."LogAge_Yr_Expected_Value"as "Exp_LogAge_Yr_Expected_Value",
+	   d."LogAge_Yr_Expected_Value"as "CSF_Exp_LogAge_Yr_Expected_Value"
+FROM candels_2015a.sample01_run03_sfr_life_vs_m_refit as a
+INNER JOIN candels_2015a.sample01_run03_speedymc_results as b
+ON a."id" = b."ID"
+LEFT OUTER JOIN candels_2015a.sample01_run04_speedymc_results as c
+ON a."id" = c."ID"
+LEFT OUTER JOIN candels_2015a.sample01_run02_speedymc_results as d
+ON a."id" = d."ID"

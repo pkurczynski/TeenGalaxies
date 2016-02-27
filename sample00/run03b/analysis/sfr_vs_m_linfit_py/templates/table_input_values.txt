@@ -1,0 +1,5 @@
+Table XX.  Simulation Input Values
+
+Run		Iter.	Scat	xerr_type	yerr_type
+(1)		(2)		(3)		(4)			(5)
+

@@ -1,0 +1,61 @@
+Experiment 2015-05-16-A
+
+summary run03 - note on error ellipses.txt
+
+On interpreting error ellipses:
+
+The angle of the error ellipse is not directly related to the correlation between
+SFR and M*.  For example, see the data from two sources with nearly identical correlation
+and yet very different angles to their error ellipses, Table 1.
+
+Table 1.  Error data for two sources with similar SFR-M* correlation
+
+id	sx_refit	sy_refit	covxy_refit	corrxy_refit	sigxp2		sigyp2		theta
+(1)	(2)			(3)			(4)			(5)				(6)			(7)			(8)
+
+897	0.03381		0.175745	-4.72E-4	-0.49756		0.030894	0.001136	-89.090622
+453	0.19745		0.096169	-0.002412	-0.50334		0.039181	0.009054	-4.607031
+
+Caption: Data taken from sfr_100_vs_m_refit_id_cov_corr_ellipse.txt.  (1) is the source
+ID.  (2-5) are the x,y errors (log M*, log SFR respectively), covariance and correlation.
+(6-7) are the squared errors in the rotated frame, (xp,yp), where covariance is zero.
+These values are the squared values of semi-major and semi-minor axes of the error ellipse.  (8) is the angle in degrees of the semi-major axis, xp, of the error ellipse with the x axis.
+
+The angle, theta, of the error ellipse is determined from
+
+tan 2*theta =  2 sig_xy / (sigx^2 - sigy^2)					[1]
+
+where sigx, sigy, sig_xy are the errors and covariances of the data value x,y.
+
+
+Using the definition of correlation,
+
+Corr_xy = sig_xy / (sigx*sigy)								[2]
+
+Equation [1] becomes
+
+tan 2*theta = 2 corr_xy * (sigx * sigy) / (sigx^2 - sigy^2)	[3]
+
+So theta is not simply related to corr_xy, but it also depends on the magnitudes
+of the individual errors, sigx, sigy.
+
+
+
+In the example of Table 1, Source 897 has very large y error and small x error; its error ellipse is oriented "vertically" (ie theta ~ -90) whereas Source 453 has a very large x error and a small y error, so its error ellipse is oriented "horizontally" (ie theta ~ -4) even though they have the same correlation of ~ -0.50.  Notice also these sources have comparable sized error ellipses  (semi-major, semi-minor axes, see Columns 6,7).
+
+For a complete plot of error ellipse angle vs. correlation, see file:
+candels_2015a_sample01_run03_error_ellipse_angle_vs_correlation_tc.pdf
+
+
+For reference see here:
+
+Error ellipses in action - helpful animation to gain intuition
+https://www.youtube.com/watch?v=E7rnPrwbLmI
+
+Worked linear algebra to determine ellipse parameters (independent derivations
+that give algebraically the same result for semimajor, semiminor axes and orientation)
+https://m.youtube.com/watch?v=717fVhFKn8E
+https://www.youtube.com/watch?v=iaObIXpHfZg
+   
+General reference   http://stackoverflow.com/questions/20126061/creating-a-confidence-ellipses-in-a-sccatterplot-using-matplotlib
+ 
