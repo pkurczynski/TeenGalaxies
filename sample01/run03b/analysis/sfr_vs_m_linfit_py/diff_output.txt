@@ -1,0 +1,401 @@
+3c3
+< sfr_100_vs_m_line_clip_sim_linexp.py                       Python3 script
+---
+> sfr_inst_vs_m_line_clip_sim.py                       Python3 script
+7c7
+< usage: sfr_100_vs_m_line_clip_sim.py [-h] [-v] [-d] [-i ITERATIONS]
+---
+> usage: sfr_inst_vs_m_line_clip_sim.py [-h] [-v] [-d] [-i ITERATIONS]
+35c35,37
+< Example:
+---
+> example:  bash$ 
+> ./sfr_inst_vs_m_line_clip_sim.py -v -i 1000 -c 3.0 -z 1.2 2014-11-13-A__sample01__run04__speedymc_results.fits sfr_inst_vs_m_line_clip_sim_z12.pdf > sfr_inst_vs_m_line_clip_sim_z12.log.txt
+> 
+50,56d51
+< v8 09/17/2015  corrected minor inconsistencies in the way k07 fit results
+<                  are computed and reported.
+< v9 10/02/2015  updated revisions of v8 and changed output to F87 estimates
+<                  in Executive Summary.  Compute Y(XRef) for F87 best fit line.
+<                  Include SFR-M* correlation from Whitaker+2014 in plot.
+< v10 10/17/2015  Add selection functions computed in ...Manuscripts/2015/
+<                 Kurczynski - SFR-M*/Analysis/2015-10-14-A/
+77c72
+<     parser = argparse.ArgumentParser(description="Analyzes SFR-M* relation of input data with various methods and compares results to the literature (Speagle+2014, Whitaker+2014).  Performs clipping of outliers to a specitied threshold (default 3 sigma), and re-fits the data.  Estimates intrinsic scatter of the data using various methods.  Performs simulations to estimate errors.  Outputs pdf files showing data, best fit model(s) and residuals, and optional text data to console.")
+---
+>     parser = argparse.ArgumentParser(description="Analyzes SFR-M* relation of input data with various methods and compares results to the literature (Speagle+2014).  Performs clipping of outliers to a specitied threshold (default 3 sigma), and re-fits the data.  Estimates intrinsic scatter of the data using various methods.  Performs simulations to estimate errors.  Outputs pdf files showing data, best fit model(s) and residuals, and optional text data to console.")
+89c84
+<         print("sfr_100_vs_m_line_clip_sim_linexp.py \n")
+---
+>         print("sfr_inst_vs_m_line_clip_sim.py \n")
+104,105c99,100
+<     logSFR_Input_Value = tbData.field('LogSFR_100_Expected_Value')
+<     logSFR_Input_Err = tbData.field('LogSFR_100_Expected_Err68')
+---
+>     logSFR_Input_Value = tbData.field('LogSFR_Inst_Expected_Value')
+>     logSFR_Input_Err = tbData.field('LogSFR_Inst_Expected_Err68')
+145c140
+<     Covariance_LogStellarMass_LogSFR = tbData.field('Cov_8_14')
+---
+>     Covariance_LogStellarMass_LogSFR = tbData.field('Cov_8_10')
+147c142
+<     Variance_LogSFR = tbData.field('Cov_14_14')
+---
+>     Variance_LogSFR = tbData.field('Cov_10_10')
+151c146
+<     Correlation_LogStellarMass_LogSFR = tbData.field('Corr_8_14')
+---
+>     Correlation_LogStellarMass_LogSFR = tbData.field('Corr_8_10')
+153c148
+< 
+---
+>     
+179c174
+<     	run03	13		Age, EBV, GalMass, tau
+---
+>     	run04	13		Age, EBV, GalMass, tau
+301c296
+< 
+---
+>         
+312c307
+< 
+---
+>     
+328c323
+<         initial_fit_residual_filename = 'sfr_100_vs_m_initial_fit_residuals.txt'
+---
+>         initial_fit_residual_filename = 'sfr_inst_vs_m_initial_fit_residuals.txt'
+361,371d355
+< 
+<     """
+<     Compute scatter of refit data with covariance
+<     """
+<     (ols_rescaled_refit_cov_scatter_variance, total_scatter_variance, xerr_scatter_term, yerr_scatter_term) = scatter_variance_adhoc(x_refit,\
+<                 y_refit,\
+<                 sx_refit,\
+<                 sy_refit,\
+<                 f87_rescaled_refit_cov_slope,\
+<                 f87_rescaled_refit_cov_intercept,\
+<                 covxy = covxy_refit)
+534,535c518,519
+<     k07_rescaled_refit_slope = 0.9723
+<     k07_rescaled_refit_slope_error = 0.0142
+---
+>     k07_rescaled_refit_slope = 0.8375
+>     k07_rescaled_refit_slope_error = 0.0143
+537,538c521,522
+<     k07_rescaled_refit_cov_slope = 0.9767
+<     k07_rescaled_refit_cov_slope_error = 0.0141
+---
+>     k07_rescaled_refit_cov_slope = 0.8601
+>     k07_rescaled_refit_cov_slope_error = 0.0120
+540,541c524,525
+<     k07_rescaled_refit_intercept = 0.0761
+<     k07_rescaled_refit_intercept_error = 0.0113
+---
+>     k07_rescaled_refit_intercept = 0.1000
+>     k07_rescaled_refit_intercept_error = 0.0117
+543,544c527,528
+<     k07_rescaled_refit_cov_intercept = 0.08932
+<     k07_rescaled_refit_cov_intercept_error = 0.0078
+---
+>     k07_rescaled_refit_cov_intercept = 0.0861
+>     k07_rescaled_refit_cov_intercept_error = 0.0089
+546,548c530,531
+<     k07_rescaled_refit_scatter_variance = 0.0586
+<     k07_rescaled_refit_scatter_variance_error = 0.0044
+<     k07_rescaled_refit_scatter_variance_frac_error = k07_rescaled_refit_scatter_variance_error / k07_rescaled_refit_scatter_variance
+---
+>     k07_rescaled_refit_scatter_variance = 0.0573
+>     k07_rescaled_refit_scatter_variance_error = 0.0052
+550,552c533,536
+<     k07_rescaled_refit_cov_scatter_variance = 0.0516
+<     k07_rescaled_refit_cov_scatter_variance_error = 0.0038
+<     k07_rescaled_refit_cov_scatter_variance_frac_error = k07_rescaled_refit_cov_scatter_variance_error / k07_rescaled_refit_cov_scatter_variance
+---
+>     k07_rescaled_refit_cov_scatter_variance = 0.0507
+>     k07_rescaled_refit_cov_scatter_variance_error = 0.0041
+>     
+>     k07_rescaled_refit_scatter_variance_frac_error = k07_rescaled_refit_scatter_variance_error / k07_rescaled_refit_scatter_variance
+554c538
+<     k07_rescaled_refit_scatter_sigma = np.sqrt(k07_rescaled_refit_scatter_variance)
+---
+>     k07_rescaled_refit_scatter_sigma = np.sqrt(k07_rescaled_refit_cov_scatter_variance)
+558,561d541
+<     k07_rescaled_refit_cov_scatter_sigma = np.sqrt(k07_rescaled_refit_cov_scatter_variance)
+<     k07_rescaled_refit_cov_scatter_sigma_frac_error = 0.5 * k07_rescaled_refit_cov_scatter_variance_frac_error
+<     k07_rescaled_refit_cov_scatter_sigma_error = k07_rescaled_refit_cov_scatter_sigma * k07_rescaled_refit_cov_scatter_sigma_frac_error
+< 
+570,572c550,552
+<        refit_data_table_id_cov_corr_filename = 'sfr_100_vs_m_refit_id_cov_corr.txt'    
+<        refit_data_table_cov_filename = 'sfr_100_vs_m_refit_cov.txt'
+<        refit_data_table_filename = 'sfr_100_vs_m_refit.txt'
+---
+>        refit_data_table_id_cov_corr_filename = 'sfr_inst_vs_m_refit_id_cov_corr.txt'    
+>        refit_data_table_cov_filename = 'sfr_inst_vs_m_refit_cov.txt'
+>        refit_data_table_filename = 'sfr_inst_vs_m_refit.txt'
+576c556
+<                    header='x_refit,sx_refit,y_refit,sy_refit')
+---
+>                    header='x_refit sx_refit y_refit sy_refit')
+582c562
+<                    header='x_refit,sx_refit,y_refit,sy_refit,covxy_refit')
+---
+>                    header='x_refit sx_refit y_refit sy_refit covxy_refit')
+589c569
+<                   header = 'id,x_refit,sx_refit,y_refit,sy_refit,covxy_refit,corrxy_refit')
+---
+>                   header = 'id x_refit sx_refit y_refit sy_refit covxy_refit corrxy_refit')
+599c579
+<        db_import_filename = 'sfr_100_vs_m_refit_db_table.txt'
+---
+>        db_import_filename = 'sfr_inst_vs_m_refit_db_table.txt'
+613c593,594
+<            
+---
+> 
+>                  
+655d635
+<     ols_unscaled_refit_cov_scatter_variance = ols_rescaled_refit_cov_scatter_variance
+669,678d648
+<     f87_rescaled_refit_scatter_variance_frac_error = f87_rescaled_refit_scatter_variance_error / f87_rescaled_refit_scatter_variance
+<     f87_rescaled_refit_cov_scatter_variance_frac_error = f87_rescaled_refit_scatter_variance_error / f87_rescaled_refit_cov_scatter_variance
+<     f87_rescaled_refit_scatter_sigma = np.sqrt(f87_rescaled_refit_scatter_variance)
+<     f87_rescaled_refit_scatter_sigma_frac_error = 0.5 * f87_rescaled_refit_scatter_variance_frac_error
+<     f87_rescaled_refit_scatter_sigma_error = f87_rescaled_refit_scatter_sigma * f87_rescaled_refit_scatter_sigma_frac_error
+<     
+<     f87_rescaled_refit_cov_scatter_sigma = np.sqrt(f87_rescaled_refit_cov_scatter_variance)
+<     f87_rescaled_refit_cov_scatter_sigma_frac_error = 0.5 * f87_rescaled_refit_cov_scatter_variance_frac_error
+<     f87_rescaled_refit_cov_scatter_sigma_error = f87_rescaled_refit_cov_scatter_sigma * f87_rescaled_refit_cov_scatter_sigma_frac_error
+< 
+684,698d653
+< 
+<     """
+<     y value at a specified x reference value
+<     
+<     This determines the value b, in the model equation
+<     
+<     y = a (x - x_reference_value) + b
+< 
+<     these values are for use in comparing with literature
+<     log_mass_reference_value = 9.0 means compute log_sfr(log_mass = 9.0) 
+<     (as opposed to using the intercept, which is log sfr(log mass = 0)
+<     """
+<     x_reference_value = 9.0
+<     f87_y_at_x_reference_value = f87_unscaled_refit_cov_intercept + x_reference_value * f87_unscaled_refit_cov_slope
+<     f87_y_at_x_reference_value_error = np.sqrt(f87_rescaled_refit_slope_error**2 + f87_rescaled_refit_intercept_error**2)
+820c775
+<         print("\t                          k07  : {:.2f}".format(k07_unscaled_refit_cov_intercept))
+---
+>         print("\t                          k07  : {:.2f}".format(k07_unscaled_refit_intercept))
+823d777
+<         print("\t                          OLS  : {:.5f}".format(ols_unscaled_refit_cov_scatter_variance))
+825,828d778
+<         print("Intercept Estimates at log mass reference value")
+<         print("\tX reference value              : {:.5f}".format(x_reference_value))
+<         print("\tY(ref value)              F87  : {:.5f}".format(f87_y_at_x_reference_value))
+<         print("\tY(ref value) error        F87  : {:.5f}".format(f87_y_at_x_reference_value_error))
+830c780
+<         scatter_variance_adhoc(x_refit,y_refit,sx_refit,sy_refit,f87_rescaled_refit_slope,f87_rescaled_refit_intercept, covxy = covxy_refit, verbose = True)
+---
+>         scatter_variance_adhoc(x_refit,y_refit,sx_refit,sy_refit,f87_rescaled_refit_slope,f87_rescaled_refit_intercept, verbose = True)
+892,893c842,843
+<     axis5.set_xlabel(r"Log Stellar Mass, $M_\odot$", fontsize = 12)
+<     axis5.set_ylabel(r"Log SFR$_{100}$, $M_\odot$ yr$^{-1}$", fontsize = 12)
+---
+>     axis5.set_xlabel(r"log Stellar Mass, $M_\odot$", fontsize = 12)
+>     axis5.set_ylabel(r"log SFR$_{Inst}$, $M_\odot$ yr$^{-1}$", fontsize = 12)
+997d946
+<              linewidth = 2, \
+1003,1004c952
+<              linewidth = 2, \
+<              label='Speagle+14')
+---
+>              label='Literature')
+1008d955
+<              linewidth = 2, \
+1010d956
+<     """
+1018d963
+<     """ 
+1020,1070d964
+<     """ 
+<     Main Sequence (Whitaker+2014)
+< 
+<     Plot the MS best fit curve from Whitaker+2014, based on 
+<     values in Whitaker+2014 Table 1:
+<     
+<     redshift	       alow		  ahigh	         b
+<     0.5<z<1.0	0.94 pm 0.03	 0.14 pm 0.08	1.11 pm 0.03
+<     1.0<z<1.5	0.99 pm 0.04	 0.51 pm 0.07	1.31 pm 0.02
+<     1.5<z<2.0	1.04 pm 0.05	 0.62 pm 0.06	1.49 pm 0.02
+<     2.0<z<2.5	0.91 pm 0.06	 0.67 pm 0.06	1.62 pm 0.02
+<   
+<     Model Equation:  Y = a (log M - 10.2) + b
+<     
+<     Lower limits to data in Whitaker+2014 (Taken by inspection 
+<     from their Figure 3)  
+<     
+<     redshift    log_mass (msun)
+<     0.5<z<1.0	8.5
+<     1.0<z<1.5	9.0
+<     1.5<z<2.0	9.2
+<     2.0<z<2.5	9.3
+< 
+<     """
+<     a_whitaker2014 = 0.99
+<     b_whitaker2014 = 1.31
+<     log_mass_lower_limit_whitaker2014 = 9.0
+<     
+<     log_mass_whitaker2014 = np.linspace(x_unscaled_refit.min(),x_unscaled_refit.max(),100)
+<     # compute log SFR using model equation above; add log(1.8) to convert
+<     # from Chabrier IMF used in Whitaker+2014 to Salpeter IMF used here.
+<     # SFR(Salpeter) = SFR(Chabrier) * 1.8  (Erb+2006)
+<     log_sfr_whitaker2014 = a_whitaker2014  * (log_mass_whitaker2014 - 10.2) + b_whitaker2014 + 0.2553
+< 
+<     whitaker2014_low_extrapolation = ((log_mass_whitaker2014 > x.min()) & (log_mass_whitaker2014 <= log_mass_lower_limit_whitaker2014))
+<     whitaker2014_no_extrapolation = ((log_mass_whitaker2014 > log_mass_lower_limit_whitaker2014))
+< 
+<     """
+<     plot the MS line from Whitaker+2014
+<     """
+<     axis5.plot(log_mass_whitaker2014[whitaker2014_low_extrapolation],\
+<              log_sfr_whitaker2014[whitaker2014_low_extrapolation],\
+<              color='darkcyan',\
+<              linewidth = 2, \
+<              linestyle='dashed')
+<     axis5.plot(log_mass_whitaker2014[whitaker2014_no_extrapolation],\
+<              log_sfr_whitaker2014[whitaker2014_no_extrapolation],\
+<              color='darkcyan',\
+<              linestyle='solid', \
+<              linewidth = 2, \
+<              label = "Whitaker+14")
+1073,1074c967
+<     Plot My Model Fit:
+<     error region (bottom layer), data and outliers (middle layer), 
+---
+>     Plot error region (bottom layer), data and outliers (middle layer), 
+1172c1065
+<        refit_data_table_id_cov_corr_theta_filename = 'sfr_100_vs_m_refit_id_cov_corr_ellipse.txt'    
+---
+>        refit_data_table_id_cov_corr_theta_filename = 'sfr_inst_vs_m_refit_id_cov_corr_ellipse.txt'    
+1176c1069
+<                   header = 'id,x_refit,sx_refit,y_refit,sy_refit,sx_refit**2,sy_refit**2,covxy_refit,corrxy_refit,sigxp2,sigyp2,theta')
+---
+>                   header = 'id x_refit sx_refit y_refit sy_refit sx_refit**2 sy_refit**2 covxy_refit corrxy_refit sigxp2 sigyp2 theta')
+1186,1188d1078
+<     
+<     See error ellipses in action
+<     https://www.youtube.com/watch?v=E7rnPrwbLmI
+1207d1096
+<     # arctan2:  "y" is the first parameter, "x" is the second parameter    
+1218a1108
+>     
+1226a1117
+> 
+1296,1344d1186
+<  
+<     """
+<     Plot empirical selection functions from Experiment 2015-10-14-A
+< 
+<     parameters a-d, f_thresh are defined in Experiment 2015-10-14-A.
+<     See Summary file and documents therein.
+<     
+<     Table 1.  log F16W vs logMass		
+<     		
+<     Description	Slope, c	Intercept, d
+<     All	      0.81136	-7.396
+<     Age < 0.1 Gyr		
+<     Age > 1.0 Gyr		
+<     EBV > 0.5		
+<     EBV < 0.1		
+<     		
+<     Table 2.  log F435W vs logSFR		
+<     		
+<     Description	       Slope, a	Intercept, b
+<     SFR-M* non-outliers	0.59397	-1.16422
+<     Age < 0.1 Gyr     	0.58949	-1.12391
+<     Age >  1.0 Gyr 	0.49613	-1.10587
+<     
+<     Table 3.  Flux threshold
+<     
+<     Description     Value
+<     Orig. value     0.012
+<     Uniform value   0.025
+< 
+<     Caption:  Flux threshold used below as f_thresh.  See Excel
+<     Spreadsheet in ...Manuscripts/2015/.../Analysis/2015-10-14-A/
+< 
+<     Below parameters correspond to age > 1.0 Gyr subsample of sample00,
+<     which leads to the most extreme selection function (ie that which
+<     impinges most upon the range sampled by our data)
+<     """
+<     a=0.59397
+<     b=-1.16422
+<     c=0.81136
+<     d=-7.396
+<     f_thresh = 0.025
+< 
+<     x_selection_function = np.linspace(5.0,10.0,1000)  
+<     y_selection_function = -1*b/a + (1/a)*np.log10(2*f_thresh - 10**(c*x_selection_function + d))
+<     axis5.plot(x_selection_function, 
+<                y_selection_function,
+<                linewidth = 3, 
+<                color = 'Black')
+< 
+1348c1190
+<     text_label_scatter =r"$\sigma_{is} = " + r"{:.3f}".format(f87_rescaled_refit_cov_scatter_sigma) + r"\pm"+ r"{:.3f}".format(f87_rescaled_refit_cov_scatter_sigma_error)+r"$"
+---
+>     text_label_scatter =r"$\sigma_{is} = " + r"{:.3f}".format(k07_rescaled_refit_scatter_sigma) + r"\pm"+ r"{:.3f}".format(k07_rescaled_refit_scatter_sigma_error)+r"$"
+1351,1354d1192
+<     """
+<     Text labels in lower left
+<     """
+<     """
+1357,1363d1194
+<     """
+< 
+<     """
+<     Text labels in upper right
+<     """    
+<     axis5.text(6.5, 2.4,text_label_r2,fontsize='small', fontweight="bold")
+<     axis5.text(6.5, 2.0,text_label_scatter,fontsize='small', fontweight="bold")
+1365c1196
+<     #axis5.legend(loc='upper left', fontsize='small')
+---
+>     axis5.legend(loc='upper left', fontsize='small')
+1516c1347
+<     plot_ylim = [-3.5,2.0]
+---
+>     plot_ylim = [-6.0,2.0]
+1576c1407
+<     plot_ylim = [-1.9,1.9]
+---
+>     plot_ylim = [-1.5,1.5]
+1585c1416
+<     plt.figtext(0.3,0.02,"Log Stellar Mass, $M_\odot$",fontdict={'fontsize':12})
+---
+>     plt.figtext(0.3,0.02,"log Stellar Mass, $M_\odot$",fontdict={'fontsize':12})
+1587c1418
+<     plt.figtext(0.01,0.7,"Residual in Log SFR",fontdict={'fontsize':12},rotation=90)
+---
+>     plt.figtext(0.01,0.7,"residual in log SFR",fontdict={'fontsize':12},rotation=90)
+1601,1606c1432,1435
+<         print("\tNumber of data in fit          : ", len(y_refit))        
+<         print("\tSlope                     F87  : {:.3f}".format(f87_unscaled_refit_cov_slope) + "$\pm${:.3f}".format(f87_rescaled_refit_slope_error))
+<         print("\tIntercept                 F87  : {:.3f}".format(f87_unscaled_refit_cov_intercept) + "$\pm${:.3f}".format(f87_rescaled_refit_intercept_error))
+<         print("\tXRef                           : {:.3f}".format(x_reference_value))        
+<         print("\tY(XRef)                   F87  : {:.3f}".format(f87_y_at_x_reference_value) +"$\pm${:.3f}".format(f87_y_at_x_reference_value_error))
+<         print("\tIntrinsic scatter (sigma) F87  : {:.3f}".format(f87_rescaled_refit_cov_scatter_sigma) + "$\pm${:.3f}".format(f87_rescaled_refit_cov_scatter_sigma_error))
+---
+>         
+>         print("\tSlope                     K07  : {:.3f}".format(k07_unscaled_refit_slope) + "$\pm${:.3f}".format(k07_rescaled_refit_slope_error))
+>         print("\tNormalizaton              K07  : {:.3f}".format(k07_unscaled_refit_intercept) + "$\pm${:.3f}".format(k07_rescaled_refit_intercept_error))
+>         print("\tIntrinsic scatter (sigma) K07  : {:.3f}".format(k07_rescaled_refit_scatter_sigma) + "$\pm${:.3f}".format(k07_rescaled_refit_scatter_sigma_error))
+1612c1441
+<         print("\nsfr_100_vs_m_line_clip_sim_linexp.py Done!")
+\ No newline at end of file
+---
+>         print("\nsfr_inst_vs_m_line_clip_sim.py Done!")
+\ No newline at end of file

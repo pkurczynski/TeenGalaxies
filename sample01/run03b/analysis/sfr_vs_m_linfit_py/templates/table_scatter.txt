@@ -1,0 +1,5 @@
+Table XX.  Intrinsic Scatter Fractional Error Distribution
+
+Run		Bias	Scatter
+(1)		(2)		(3)
+

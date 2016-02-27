@@ -1,0 +1,125 @@
+Experiment
+2015-05-16-A
+
+sample01/run03b/sfr_vs_m_linfit_py
+
+run03b has reduced lower limit in Age ... 1 Myr
+Code executed on 11/11/2015
+
+OBJECTIVE
+
+SFR vs M* analysis of galaxies in sample01, using data from run03b (linear-exponential, "delayed tau model" SFH).  Linear model parameters and intrinsic scatter.
+
+METHOD
+
+sfr_100 code executed on 11/9/2015
+sfr_inst code updated to v10, with revised selection functions, and executed 11/11/2015
+sfr_inst code updated to v11, re-executed 2/4/2016
+
+
+1.  Data:  see ../khsueti/analysis.  MCMCfit results for run03b
+
+	see file: candels_2015a_sample01_run03b_speedymc_results.fits
+	
+	
+2.  Python scripts: copied from 2015-05-16-A/sample01/run04/
+
+	see files:
+	sfr_100_vs_m_line_clip_sim_linexp.py
+	sfr_inst_vs_m_line_clip_sim_linexp.py
+	sfr_life_vs_m_line_clip_sim_linexp.py
+				  
+	2.1 Execute python script.
+	2.2 Inspect residuals (topcat) vis a vis clipping range. include bulk of residuals.
+	2.3 Upload refit data .txt files to khuseti, for run in IDL to fit with K07
+	2.4 Copy K07 fit results into python script.  Re-run python scripts.
+	
+	see folders (khuseti):
+	khuseti:~/analysis/CANDELS/2015-05-16-A/sample01/analysis/run03b 
+
+
+
+	Description of diagnostic output files python scripts
+	(e.g. sfr_100_vs_m_line_clip_sim_linexp.py scripts):
+	
+	File name					Description
+
+	sfr_100_vs_m_initial_fit_residuals.txt
+								x,y, yfit, yresidual from initial fit.  Use for 
+								histogram analysis of residuals to determine/verify
+								suitable clipping value.  Import to TopCat and 
+								visually inspect.
+	sfr_100_vs_m_refit.txt		refit x,y data.  Use for k07 fits w/o covariance
+	sfr_100_vs_m_refit_cov.txt	refit x,y, cov data.  Use for k07 fits w/covariance
+	sfr_100_vs_m_refit_db_table.txt
+								refit x,y, covxy, corrxy data incl. id and outlier 
+								status of each analyzed source (from clipping).  
+								These data imported to postgresql database.
+	sfr_100_vs_m_refit_id_cov_corr.txt
+								x,y, covxy, corrxy for refit data only for debug only.
+	sfr_100_vs_m_refit_id_cov_corr_ellipse.txt
+								x,y, covxy, corrxy, error ellipse params, for debug
+								of error ellipse computation.
+
+3.  Explore effect of reducing chisq threshold for good data
+
+	See Python script: sfr_inst_vs_m_line_clip_sim_linexp_chisq100.py
+	
+
+	
+Execution command (bash shell):
+
+./sfr_inst_vs_m_line_clip_sim_linexp_chisq100.py -v -i 1000 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results_no_rejects_v1.fits candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse_v2_chisq100.pdf > candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse_v2_chisq100.log.txt
+
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results_no_rejects_v1.fits candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse_v2.pdf > candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse_v2.log.txt
+
+
+./sfr_100_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results.fits candels_2015a_sample01_run03b_sfr_100_vs_m_line_new_clip_sim_z12_median_ellipse.pdf > candels_2015a_sample01_run03b_sfr_100_vs_m_line_new_clip_sim_z12_median_ellipse.log.txt
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results.fits candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse.pdf > candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse.log.txt
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 100 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results.fits candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse.pdf 
+
+./sfr_life_vs_m_line_clip_sim_linexp.py -v -i 100 -c 2.0 -z 1.2 candels_2015a_sample01_run03b_speedymc_results.fits candels_2015a_sample01_run03b_sfr_life_vs_m_line_new_clip_sim_z12_median_ellipse.pdf 
+
+	Execution time:  about 2 minutes
+
+RESULTS
+
+FIGURE:  candels_2015a_sample01_run03b_sfr_inst_vs_m_line_new_clip_sim_z12_median_ellipse.pdf
+
+CAPTION
+Star Formation Rate (SFR$_{Inst}$; instantaneous) vs. Stellar Mass (M$_*$) in the redshift range $1.0 < z < 1.5$ for galaxies in combined CANDELS (spec-z) and UVUDF (photo-z) sample.  Outliers (red points) from an initial fit are clipped; Remaining galaxies (gray points) are used to determine the best fit (dark purple).  Results from Whitaker et al.~(2014; cyan) and the meta-analysis of Speagle et al.~(2014; red) are shown; dashed regions indicate extrapolations from the reported ranges in M$_*$.  Selection curves are shown in black; our data are insensitive to galaxies that would fall along the correlation, to the lower left of this curve.  The squared Pearson correlation coefficient and estimated intrinsic scatter (dex) are indicated by the text label.  A typical error ellipse is shown in the upper left, with half-width and half-height equal to the median error in log M$_*$ and log SFR respectively, and orientation determined by the median covariance.
+
+FIGURE:  candels_2015a_sample01_run03b_sfr_life_vs_m_line_new_clip_sim_z12_median_ellipse.pdf
+
+CAPTION
+Star Formation Rate (SFR$_{Life}$; lifetime average) vs. Stellar Mass (M$_*$) in the redshift range $1.0 < z < 1.5$ for galaxies in combined CANDELS (spec-z) and UVUDF (photo-z) sample.  Outliers (red points) from an initial fit are clipped; Remaining galaxies (gray points) are used to determine the best fit (dark purple).  Results from Whitaker et al.~(2014; cyan) and the meta-analysis of Speagle et al.~(2014; red) are shown; dashed regions indicate extrapolations from the reported ranges in M$_*$.  Selection curves are shown in black; our data are insensitive to galaxies that would fall along the correlation, to the lower left of this curve.  The squared Pearson correlation coefficient and estimated intrinsic scatter (dex; 3$\sigma$ upper limit) are indicated by the text label.  A typical error ellipse is shown in the upper left, with half-width and half-height equal to the median error in log M$_*$ and log SFR respectively, and orientation determined by the median covariance.
+
+
+3. Chisq experiment
+
+Intrinsic scatter changes from 0.27 (chisq < 50) --> 0.29 (chisq < 100) when using sample which less stringent chisq criterion.  Other parameters (slope, intercept) are basically unchanged.
+
+Executive summary					chisq < 50			chisq < 100
+	Number of data in fit          :  671				  742
+	Slope                     F87  : 0.825$\pm$0.012	 0.824$\pm$0.013
+	Intercept                 F87  : -7.474$\pm$0.010	 -7.445$\pm$0.009
+	XRef                           : 9.000				 9.000
+	Y(XRef)                   F87  : -0.045$\pm$0.016	 -0.030$\pm$0.015
+	Intrinsic scatter (sigma) F87  : 0.273$\pm$0.009	 0.293$\pm$0.008
+	Total scatter (dex)       F87  : 0.383				 0.396
+	Outlier fraction (positive)    : 0.004				 0.009
+	Outlier fraction (negative)    : 0.026				 0.027
+	Median (reduced) chisq         : 1.505				 1.613
+
+
+CONCLUSION
+Revised SFR-M* analysis for sample01 is done for SFR_Inst vs M*.  Figure and caption above are e-mailed to EG for use in NSF 2015 proposal.
+
+The attached figure is obtained from the most recent SpeedyMC run (reduced lower Age limit = 1 Myr).  Lowering the age limit makes very little difference to stellar mass estimates (only two galaxies with > 10 % discrepancy in mass estimate).  The new speedymc run makes a larger difference in SFR estimates.  There are 159 sources in the new sample (out of ~1100 total) with good speedymc fits that have discrepancies greater than 10% in SFR_Inst.  We will use the SFR_Inst values from the new run.
+
+The attached figure incorporates new selection functions, based on revised fits of F435W flux to SFR_Inst (as opposed to SFR100 fits used previously).  The selection functions do not change appreciably.
+
+
