@@ -1,0 +1,6 @@
+sfr_inst_vs_m_line_clip_sim_linexp.py 
+
+Run date and time :   2016-02-27 11:30:52.026483
+Python Version    :   3.4.2 |Anaconda 2.0.1 (x86_64)| (default, Oct 21 2014, 17:42:20) 
+[GCC 4.2.1 (Apple Inc. build 5577)]
+Astropy version   :   0.3.2
