@@ -1,0 +1,79 @@
+Experiment
+2015-05-16-A
+
+sample03/run03b/sfr_vs_m_linfit_py
+
+
+OBJECTIVE
+
+SFR vs M* analysis of galaxies in sample03, using data from run03b (linear-exponential, "delayed tau model" SFH).  Linear model parameters and intrinsic scatter.
+
+METHOD
+
+Code executed on 11/16/2015 (added selection functions; See Experiment 2015-10-14-A)
+Code re-executed on 2/4/2016 (removed duplicates from sample)
+
+1.  Data:  see ../database.  MCMCfit results for run03b
+
+	see file:
+	candels_2015a_sample03_run03b_speedymc_results_norejects_v1.fits
+	candels_2015a_sample03_run03b_speedymc_results_norejects_v2.fits
+	
+	
+2.  Python scripts: copied from 2015-05-16-A/sample01/run03b/
+
+	see files:
+	sfr_100_vs_m_line_clip_sim_linexp.py
+	sfr_inst_vs_m_line_clip_sim_linexp.py
+	sfr_life_vs_m_line_clip_sim_linexp.py
+				  
+	2.1 Execute python script.
+	2.2 Inspect residuals (topcat) vis a vis clipping range. include bulk of residuals.
+	2.3 Upload refit data .txt files to khuseti, for run in IDL to fit with K07
+	2.4 Copy K07 fit results into python script.  Re-run python scripts.
+	
+	see folders (khuseti):
+	khuseti:~/analysis/CANDELS/2015-05-16-A/sample03/analysis/run03b 
+
+		
+Execution command (bash shell):
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 2.42 candels_2015a_sample03_run03b_speedymc_results_no_rejects_v1.fits candels_2015a_sample03_run03b_sfr_inst_vs_m_line_new_clip_sim_z24_median_ellipse.pdf > candels_2015a_sample03_run03b_sfr_inst_vs_m_line_new_clip_sim_z24_median_ellipse.log.txt
+
+
+./sfr_inst_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 2.42 candels_2015a_sample03_run03b_speedymc_results_no_rejects_v2.fits candels_2015a_sample03_run03b_sfr_inst_vs_m_line_new_clip_sim_z24_median_ellipse_v2.pdf > candels_2015a_sample03_run03b_sfr_inst_vs_m_line_new_clip_sim_z24_median_ellipse_v2.log.txt
+
+
+./sfr_100_vs_m_line_clip_sim_linexp.py -v -i 100 -c 2.0 -z 2.42 candels_2015a_sample03_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample03_run03b_sfr_100_vs_m_line_new_clip_sim_z24_median_ellipse.pdf
+
+./sfr_100_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 2.42 candels_2015a_sample03_run03b_speedymc_results_norejects_v1.fits candels_2015a_sample03_run03b_sfr_100_vs_m_line_new_clip_sim_z24_median_ellipse.pdf > candels_2015a_sample03_run03b_sfr_100_vs_m_line_new_clip_sim_z24_median_ellipse.log.txt
+
+
+./sfr_life_vs_m_line_clip_sim_linexp.py -v -i 1000 -c 2.0 -z 2.42 candels_2015a_sample03_run03b_speedymc_results_no_rejects_v1.fits candels_2015a_sample03_run03b_sfr_life_vs_m_line_new_clip_sim_z24_median_ellipse.pdf > candels_2015a_sample03_run03b_sfr_life_vs_m_line_new_clip_sim_z24_median_ellipse.log.txt
+
+	Execution time:  about 2 minutes
+
+RESULTS
+
+SFRinst results were run on 11/16/2015 and copied to file:  
+summary - linear model evolution.txt
+
+Results superceded by run on 2/4/2016
+Executive summary
+	Number of data in fit          :  237
+	Slope                     F87  : 0.849$\pm$0.021
+	Intercept                 F87  : -7.513$\pm$0.018
+	XRef                           : 9.000
+	Y(XRef)                   F87  : 0.128$\pm$0.028
+	Intrinsic scatter (sigma) F87  : 0.281$\pm$0.017
+	Total scatter (dex)       F87  : 0.399
+	Outlier fraction (positive)    : 0.016
+	Outlier fraction (negative)    : 0.020
+	Median (reduced) chisq         : 1.712
+
+
+
+CONCLUSION
+SFRinst results were run on 11/16/2015 and copied to file:  
+summary - linear model evolution.txt
+
+results superceded by run on 2/4/2016
